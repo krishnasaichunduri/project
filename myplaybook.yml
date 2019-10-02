@@ -1,0 +1,15 @@
+---
+- hosts: [aws-hosts]
+  #vars:
+  # http_port: 80
+  become: yes
+  become_method: sudo
+  remote_user: ubuntu
+
+  tasks:
+   - name: install java
+     apt: pkg=openjdk-8-jdk state=present update_cache=true force_apt_get=yes
+   - name: tomcat setup
+     apt: pkg=tomcat9 state=present update_cache=true force_apt_get=yes
+   - name: maven setup
+     apt: pkg=maven state=latest update_cache=true force_apt_get=yes
